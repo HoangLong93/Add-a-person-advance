@@ -117,11 +117,11 @@ table{
 
     .editUser{
         text-align: right;
-        > button{                
-            background: url('../img/edit-btn.png') no-repeat center;
+        > button{
             border:0;
             height:30px;
             width:30px;
+            float:left;
             margin: 0 20px 0 0;
         }
         > span {
@@ -129,6 +129,15 @@ table{
             height: 30px;
             background-color:lightgray;
             position: absolute;
+        }
+        .btnEdit{                            
+            background: url('../img/edit-btn.png') no-repeat center;
+        }
+        .btnCancelEdit{                            
+            background: url('../img/cancelChange.png') no-repeat center;
+        }
+        .btnSaveEdit{                            
+            background: url('../img/saveChange.png') no-repeat center;
         }
     }
 
@@ -219,17 +228,22 @@ $removeTextColor: #6b6b6b;
 }
 
 // pagination
-.pagination{
+.paging{
     text-align: center;
     width: 100%;
-    .currentPage{
-        border:none;
-        font-size: 20px;
-        padding: 12px;
-        color: #666;
-        text-align: center;
-        background: #dbf6f5;
-        border-radius: 50%;
+    .pagination{
+        >span{
+            border:none;
+            font-size: 20px;
+            padding: 12px;
+            color: #666;
+            text-align: center; 
+            text-decoration: none;              
+        }
+        .currentPage{  
+            background: #dbf6f5;
+            border-radius: 50%;
+        }
     }
 }
 

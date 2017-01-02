@@ -15,7 +15,7 @@ class Container extends Component{
 			users: props.users,
 			isConfirmModalOpen:false,
 			nextUserId:parseInt(props.users[props.users.length-1].id) + 1,
-			pageSize: 5			
+			pageSize: 5		
 		}
 	}
 	// Add new User

@@ -12,15 +12,22 @@ class AddPlayerForm extends Component{
                 id:props.nextUserId,
             },
             nameText:"",
+            enabledAddButton:false
         }
     }
     // handle value change in Add User Form
     handleChange(value,fieldName){
         const newUser = Object.assign({},this.state.user,{[fieldName]:value});
-        this.setState({user: newUser,nameText:value})
+        if(newUser['name'] !== "" && newUser['name'] !== undefined && newUser['gender'] !== "Gender" && newUser['gender'] !== undefined && newUser['age'] !== "Age" && newUser['age'] !== undefined){
+            this.setState({user: newUser,nameText:value,enabledAddButton:true})
+        }else{
+            this.setState({user: newUser,nameText:value,enabledAddButton:false})
+        }
     }
     handleAdd(){
         this.props.AddUser(this.state.user);
+        this.setState({user:{id:this.props.nextUserId},enabledAddButton:true});
+        console.log(this.state.user)
     }
     componentWillReceiveProps(nextProps) {
         this.setState({user:{id: nextProps.nextUserId}});
@@ -49,7 +56,7 @@ class AddPlayerForm extends Component{
                     )}
                 </select>
                     
-                <button name="Submit" onClick={this.handleAdd.bind(this)} >+</button>
+                <button name="Submit" onClick={this.handleAdd.bind(this)} disabled={this.state.enabledAddButton ? false : true}>+</button>
                 <br/>
                 <div className={`validate validateName ${this.state.user.name === "" || this.state.user.name === undefined ? "" : "hideValidateBlock"}`}>
                     <p>Please enter user name</p>

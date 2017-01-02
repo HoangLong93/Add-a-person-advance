@@ -62,11 +62,11 @@ class Row extends Component{
                 <td className="edit">
                 {!this.state.editable ?
                 <div className="editUser">
-                    <button onClick={this.onEdit.bind(this)}></button><span></span>
+                    <button className="btnEdit" onClick={this.onEdit.bind(this)}></button><span></span>
                 </div> :  
                 <div className="editUser">
-                    <button onClick={this.onCancel.bind(this)}></button>
-                    <button onClick={this.onSave.bind(this)}></button>
+                    <button className="btnCancelEdit" onClick={this.onCancel.bind(this)}></button>
+                    <button className="btnSaveEdit" onClick={this.onSave.bind(this)}></button>
                     <span></span>
                 </div>
                 }

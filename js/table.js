@@ -26,7 +26,7 @@ class Table extends Component {
             })  :
             newUsers.sort(function(a,b){
                 return b[fieldName] - a[fieldName];
-            })            
+            })       
             this.setState({users:newUsers, sortInOrder:!this.state.sortInOrder})
         }else{            
             const mapped = newUsers.map((el,i)=> {
@@ -41,7 +41,8 @@ class Table extends Component {
             });
             let sortedUsers = mapped.map((el) =>{
                 return newUsers[el.index];
-            })            
+            })               
+            console.log(sortedUsers,this.state.users);          
             this.setState({users:sortedUsers, sortInOrder:!this.state.sortInOrder})
         }
     }
@@ -108,7 +109,7 @@ class Table extends Component {
                         {users}
                     </tbody>
                 </table>
-                <div className="pagination">
+                <div className="paging">
                     {pager(page)}
                 </div>
             </div>
@@ -126,22 +127,30 @@ function pager(page){
     let pageLinks = [];
     if(page.currentPage > 1){
         if(page.currentPage > 2){
-            pageLinks.push(<span className="pageLink" onClick={page.handleClickOnPagination(1)}>«</span>);
+            if(page.currentPage > 3){
+            pageLinks.push(<span key={1} onClick={page.handleClickOnPagination(1)}>...</span>);
+            pageLinks.push(' ');
+            }            
+            pageLinks.push(<span key={page.currentPage - 2} onClick={page.handleClickOnPagination(page.currentPage - 2)}>{page.currentPage - 2}</span>);
             pageLinks.push(' ');
         }
-        pageLinks.push(<span className="pageLink" onClick={page.handleClickOnPagination(page.currentPage - 1)}>‹</span>);
+        pageLinks.push(<span key={page.currentPage - 1} onClick={page.handleClickOnPagination(page.currentPage - 1)}>{page.currentPage - 1}</span>);
         pageLinks.push(' ');
     }
-    pageLinks.push(<span className="currentPage">  {page.currentPage}</span>)
+    pageLinks.push(<span key={page.currentPage} className="currentPage">  {page.currentPage}</span>)
     if(page.currentPage < page.numPages){
         pageLinks.push(' ');
-        pageLinks.push(<span className="pageLink" onClick={page.handleClickOnPagination(page.currentPage + 1)}>›</span>)
+        pageLinks.push(<span key={page.currentPage + 1} onClick={page.handleClickOnPagination(page.currentPage + 1)}>{page.currentPage + 1}</span>)
         if(page.currentPage < page.numPages - 1){
             pageLinks.push(' ');
-            pageLinks.push(<span className="pageLink" onClick={page.handleClickOnPagination(page.numPages)}>»</span>)
+            pageLinks.push(<span key={page.currentPage + 2} onClick={page.handleClickOnPagination(page.currentPage + 2)}>{page.currentPage + 2}</span>)
+            if(page.currentPage < page.numPages - 2){
+            pageLinks.push(' ');
+            pageLinks.push(<span key={page.numPages} onClick={page.handleClickOnPagination(page.numPages)}>...</span>)
+            }
         }
     }
-    return <div className="pager">{pageLinks}</div>
+    return <div className="pagination">{pageLinks}</div>
 }
 
 export default Table;
