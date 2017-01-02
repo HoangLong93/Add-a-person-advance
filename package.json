@@ -20,6 +20,7 @@
   "homepage": "https://github.com/HoangLong93/Add-a-person-advance#readme",
   "dependencies": {
     "es6-promise": "^4.0.5",
+    "node-sass": "^4.1.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1"
   },
