@@ -7,6 +7,10 @@ $bootstrap-sass-asset-helper: true;
 	width: 1200px;
 }
 
+button{
+    outline: none;
+}
+
 @mixin border-text(){
     font-size: 18px;
     padding:15px;
@@ -45,6 +49,7 @@ $bootstrap-sass-asset-helper: true;
     } 
 }
 
+// Validate AddUserFormF
 .validate{
     display:block;
     float:left;
@@ -135,9 +140,11 @@ table{
         }
         .btnCancelEdit{                            
             background: url('../img/cancelChange.png') no-repeat center;
+            margin: 0;
         }
         .btnSaveEdit{                            
             background: url('../img/saveChange.png') no-repeat center;
+            margin: 0;
         }
     }
 

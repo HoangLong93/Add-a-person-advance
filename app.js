@@ -11,8 +11,7 @@ import Container from './js/container.js';
 
 // Create UserLists
 const userLists = new UserList();
-userLists.init(3);
+userLists.init(100);
 
 // Render 
 ReactDOM.render(< Container users={userLists.users} />, document.getElementById('container'))
-                
