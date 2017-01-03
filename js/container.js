@@ -5,7 +5,7 @@ import React, { Component, PropTypes } from 'react';
 import UserList from './userList.js';
 import Table from './table.js';
 import Confirm from './confirm.js';
-import AddPlayerForm from './addPlayerForm.js'
+import AddUserForm from './AddUserForm.js'
 
 class Container extends Component{
 	constructor(props) {
@@ -48,7 +48,7 @@ class Container extends Component{
     		<Confirm abort={this.abort.bind(this)} confirm={this.confirm.bind(this)} />
 			</div> :			
 			<div className="main">
-			<AddPlayerForm AddUser={this.AddUser.bind(this)} nextUserId={this.state.nextUserId}/>
+			<AddUserForm AddUser={this.AddUser.bind(this)} nextUserId={this.state.nextUserId}/>
 			<Table 	users={this.state.users}
 					onSave={this.onSave.bind(this)}
 					onRemove={this.onRemoveUser.bind(this)}
