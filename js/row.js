@@ -11,20 +11,21 @@ class Row extends Component {
         }
     }
     // Edit existing user
-    onEdit() {
+    onEditUser() {
         this.currentUser = Object.assign({}, this.state.user);
         this.setState({ editable: true });
     }
-    onCancel() {
+    onCancelEdit() {
         this.setState({ editable: false, user: this.currentUser });
     }
-    onSave() {
+    onSaveEdit() {
         const {user} = this.state;
         this.props.onSave(user.id, user)
         this.setState({ editable: false });
     }
     handleChange(value, fieldName) {
         const newUser = Object.assign({}, this.state.user, { [fieldName]: value });
+        console.log(newUser)
         this.setState({ user: newUser })
     }
     componentWillReceiveProps(nextProps) {
@@ -60,11 +61,11 @@ class Row extends Component {
                 <td className="edit">
                     {!this.state.editable ?
                         <div className="editUser">
-                            <button title="Edit User" className="btnEdit" onClick={this.onEdit.bind(this)}></button><span></span>
+                            <button title="Edit User" className="btnEdit" onClick={this.onEditUser.bind(this)}></button><span></span>
                         </div> :
                         <div className="editUser">
-                            <button title="Cancle Changes" className="btnCancelEdit" onClick={this.onCancel.bind(this)}></button>
-                            <button title="Save Changes" className="btnSaveEdit" onClick={this.onSave.bind(this)}></button>
+                            <button title="Cancle Changes" className="btnCancelEdit" onClick={this.onCancelEdit.bind(this)}></button>
+                            <button title="Save Changes" className="btnSaveEdit" onClick={this.onSaveEdit.bind(this)}></button>
                             <span></span>
                         </div>
                     }

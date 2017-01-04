@@ -9,9 +9,9 @@ import './css/main.scss';
 import UserList from './js/userList.js';
 import Container from './js/container.js';
 
-// Create UserLists
+// Create UserLists with init(numofUsers) function where numofUsers is the amount of user you want to create
 const userLists = new UserList();
-userLists.init(100);
+userLists.init(3);
 
 // Render 
 ReactDOM.render(< Container users={userLists.users} />, document.getElementById('container'))

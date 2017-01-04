@@ -1,11 +1,11 @@
-// Libraries
+// Impor Libraries
 import React, { Component, PropTypes } from 'react';
 
+// Import Component
 import UserList from './userList.js';
-
 import Row from './row.js';
-
 import Confirm from './confirm.js';
+import Pager from './pager.js';
 
 class Table extends Component {
     constructor(props) {
@@ -18,11 +18,13 @@ class Table extends Component {
     }
     //Sort Users
     handleSortFunction(fieldName) {
-        const newUsers = Object.assign([], this.state.users);
+        const newUsers = [...this.state.users];
         const sortInOrder = this.state.sortInOrder ? 1 : -1;
-        newUsers.sort((a, b) => {
-            const fieldA = a[fieldName];
-            const fieldB = b[fieldName];
+        newUsers.sort((a, b) => {            
+            let fieldA = a[fieldName];
+            let fieldB = b[fieldName];
+            if (typeof fieldA === 'string') fieldA = fieldA.toLowerCase();
+            if (typeof fieldB === 'string') fieldB = fieldB.toLowerCase();
             if (fieldA < fieldB) return sortInOrder * 1
             else if (fieldA === fieldB) return 0
             else return sortInOrder * -1
@@ -31,11 +33,6 @@ class Table extends Component {
         this.setState({ users: newUsers, sortInOrder: !this.state.sortInOrder })
     }
     //Pagination
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            currentPage: 1
-        })
-    }
     getPage() {
         const newUsers = Object.assign([], this.state.users);
         let start = this.props.pageSize * (this.state.currentPage - 1);
@@ -57,7 +54,13 @@ class Table extends Component {
     handlePageChange(pageNum) {
         this.setState({ currentPage: pageNum })
     }
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            currentPage: 1
+        })
+    }
     render() {
+        console.log(this.state.users)
         const order = this.state.sortInOrder ? 'ascending' : 'descending';
         let page = this.getPage();
         let users = page.users.map((user) =>
@@ -92,7 +95,7 @@ class Table extends Component {
                     </tbody>
                 </table>
                 <div className="paging">
-                    {pager(page)}
+                    <Pager page={page} />
                 </div>
             </div>
         )
@@ -103,36 +106,6 @@ Table.propTypes = {
     onRemove: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
     pageSize: PropTypes.number.isRequired,
-}
-
-function pager(page) {
-    let pageLinks = [];
-    if (page.currentPage > 1) {
-        if (page.currentPage > 2) {
-            if (page.currentPage > 3) {
-                pageLinks.push(<span key={1} onClick={page.handleClickOnPagination(1)}>...</span>);
-                pageLinks.push(' ');
-            }
-            pageLinks.push(<span key={page.currentPage - 2} onClick={page.handleClickOnPagination(page.currentPage - 2)}>{page.currentPage - 2}</span>);
-            pageLinks.push(' ');
-        }
-        pageLinks.push(<span key={page.currentPage - 1} onClick={page.handleClickOnPagination(page.currentPage - 1)}>{page.currentPage - 1}</span>);
-        pageLinks.push(' ');
-    }
-    pageLinks.push(<span key={page.currentPage} className="currentPage">  {page.currentPage}</span>)
-    if (page.currentPage < page.numPages) {
-        pageLinks.push(' ');
-        pageLinks.push(<span key={page.currentPage + 1} onClick={page.handleClickOnPagination(page.currentPage + 1)}>{page.currentPage + 1}</span>)
-        if (page.currentPage < page.numPages - 1) {
-            pageLinks.push(' ');
-            pageLinks.push(<span key={page.currentPage + 2} onClick={page.handleClickOnPagination(page.currentPage + 2)}>{page.currentPage + 2}</span>)
-            if (page.currentPage < page.numPages - 2) {
-                pageLinks.push(' ');
-                pageLinks.push(<span key={page.numPages} onClick={page.handleClickOnPagination(page.numPages)}>...</span>)
-            }
-        }
-    }
-    return <div className="pagination">{pageLinks}</div>
 }
 
 export default Table;
