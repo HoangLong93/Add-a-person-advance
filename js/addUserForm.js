@@ -5,6 +5,7 @@ import Option from './option.js';
 class AddUserForm extends Component {
     constructor(props) {
         super(props);
+        // default value for AddUserForm
         this.defaultValue = {
             gender: 'Gender',
             name: '',
@@ -25,6 +26,7 @@ class AddUserForm extends Component {
             this.setState({ user: newUser, enabledAddButton: false, isValidate: true })
         }
     }
+    // Add User
     handleAdd() {
         this.props.AddUser(this.state.user);
         this.setState({ user: this.defaultValue, enabledAddButton: false, isValidate: false });
@@ -35,7 +37,6 @@ class AddUserForm extends Component {
             options.push(i);
         }
         return (
-            // Add User
             <div className="addPerson">
                 <h2>Add a person</h2><br />
                 <input type="textbox" id="UserName" placeholder="Name" value={this.state.user.name} onChange={(ev) => this.handleChange(ev.target.value, 'name')} />

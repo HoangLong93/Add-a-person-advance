@@ -14,6 +14,7 @@ class Container extends Component {
 		this.state = {
 			users: props.users,
 			isConfirmModalOpen: false,
+			// change number of users display per pages
 			pageSize: 20
 		}
 	}
