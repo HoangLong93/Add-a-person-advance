@@ -37,7 +37,10 @@ button{
     > input{
         @include border-text;
         width:538px;
-        background-color: #f2f2f2
+        background-color: #f2f2f2;
+        &:focus{
+            outline: none;
+        }
     }   
 
     > select{
@@ -47,7 +50,10 @@ button{
         width:180px;
         background: url(../img/arrows.png) no-repeat;
         background-position: 88% 50%;
-        background-color: #f2f2f2
+        background-color: #f2f2f2;
+        &:focus{
+            outline: none;
+        }
     } 
 
     > button{
@@ -207,6 +213,9 @@ table{
             background-position: 92% 50%;
             border: 2px solid #ededed !important;
             width: 100%;
+            &:focus{
+                outline: none;
+            }
         }
     }
 }
