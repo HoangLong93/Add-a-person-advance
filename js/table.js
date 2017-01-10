@@ -76,18 +76,22 @@ class Table extends Component {
                 <table>
                     <thead>
                         <tr>
-                            <td className={`name ${order}`}>
+                            <th className={`name ${order}`}>
                                 <span>Name</span>
                                 <button className="sort-icon" onClick={(ev) => this.handleSortFunction('name')}></button>
-                            </td>
-                            <td className={`gender ${order}`}>
+                            </th>
+                            <th className={`gender ${order}`}>
                                 <span>Gender</span>
                                 <button className="sort-icon" onClick={(ev) => this.handleSortFunction('gender')}></button>
-                            </td>
-                            <td className={`age ${order}`}>
+                            </th>
+                            <th className={`age ${order}`}>
                                 <span>Age</span>
                                 <button className="sort-icon" onClick={(ev) => this.handleSortFunction('age')}></button>
-                            </td>
+                            </th>
+                            <th className="edit">
+                            </th>
+                            <th className="delete">
+                            </th>
                         </tr>
                     </thead>
                     <tbody>

@@ -1,5 +1,6 @@
 $bootstrap-sass-asset-helper: true;
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import url('~bootstrap/dist/css/bootstrap.min.css');
 
 .main{
     @extend .row;
@@ -12,9 +13,9 @@ button{
 }
 
 @mixin border-text(){
-    font-size: 18px;
-    padding:15px;
-    margin: 0 20px 0 0;
+    font-size: 30px;
+    padding: 20px 22px;
+    margin: 0px 25px;
     border: 1px solid lightgray;
     border-radius: 5px;
     line-height: inherit;
@@ -27,25 +28,38 @@ button{
 
 // Add User
 .addPerson{
+    margin: 150px 0;
+    h2{
+        font-size: 36px;
+        color:gray;
+        margin: 40px 20px;
+    }
     > input{
         @include border-text;
-        width:400px;
+        width:538px;
+        background-color: #f2f2f2
     }   
 
     > select{
         @include border-text;
         @include select;
-        width:170px;
-        background: url(../img/arrows.png) no-repeat right center;
+        color:gray;
+        width:180px;
+        background: url(../img/arrows.png) no-repeat;
+        background-position: 88% 50%;
+        background-color: #f2f2f2
     } 
 
     > button{
         @include border-text;
         font-family: 'fantasy';
-        padding:15px 30px 15px 30px;
+        padding:20px 35px;
         text-decoration: none;
         cursor: pointer;
-        border:none;
+        background-color: #f2f2f2;
+        >span{
+            color:#9e9e9e;
+        }
     } 
 }
 
@@ -70,89 +84,109 @@ table{
 	line-height: 24px;
 	margin: 30px auto;
 	text-align: left;
-	width: 1200px;
-
-    tr:nth-child(even) {background: #eef0f1}
-    tr:nth-child(odd) {background: #FFF}
+	width: 1150px;
     tr{
         @extend .row;
     }
-    th{
-        background: #FFF;
-        font-size: 16px;
-        font-weight: normal;
-        padding: 5px;
-        text-align: left;
+    thead{  
+        tr{
+        background: #FFF!important;    
+            th{  
+            font-size: 24px;
+            font-weight: normal;
+            padding: 30px;
+            color:gray;
+            text-align: left;
+                >span{
+                    margin:10px;
+                }
+            }
+        }
     }
+    tr:nth-child(odd) {background: #eef0f1}
+    tr:nth-child(even) {background: #FFF}
     td{
-        padding: 20px;
+        padding: 10px;
         text-align: left;
-        font-size:20px;
+        font-size:28px;
+        color:gray;
     }
 
     .name{
-        @extend .col-lg-4;
-        @extend .col-md-4;
-        @extend .col-xs-4;
+        @extend .col-lg-6;
+        @extend .col-md-6;
+        @extend .col-xs-6;
         >input{
             border:none;
+            padding:15px;
             background: inherit;
         }
     }
     
-    .gender, .age{
+    .gender {
         @extend .col-lg-2;
         @extend .col-md-2;
         @extend .col-xs-2;
+        width: 20%;
         > select {       
             @include select;
-            padding: 2px 2px 2px 2px;
+            padding:20px;
             border: none;
             margin: 0;
             background: inherit;
         }
     
     }
-
-    .edit, .delete{
+    .age{
+        @extend .col-lg-1;
+        @extend .col-md-1;
+        @extend .col-xs-1;
+        width:14%;
+        > select {       
+            @include select;
+            padding:20px;
+            border: none;
+            margin: 0;
+            background: inherit;
+        }
+    }
+    .edit{
         @extend .col-lg-1;
         @extend .col-md-1;
         @extend .col-xs-1;
     }
+    .delete{
+        @extend .col-lg-1;
+        @extend .col-md-1;
+        @extend .col-xs-1;
+        margin-left: -12px;
+    }
 
-    .editUser{
+    .editUser, .deleteUser{
         text-align: right;
+        padding:10px;
         > button{
             border:0;
             height:30px;
             width:30px;
             float:left;
-            margin: 0 20px 0 0;
+            margin: 8px 32px 0 0;
+            background: inherit;
+            color:lightgray;
+            >span{
+                font-size: 27px;
+            }
         }
         > span {
-            width:1px;
-            height: 30px;
+            width: 2px;
+            height: 45px;
             background-color:lightgray;
             position: absolute;
         }
-        .btnEdit{                            
-            background: url('../img/edit-btn.png') no-repeat center;
-        }
-        .btnCancelEdit{                            
-            background: url('../img/cancelChange.png') no-repeat center;
-            margin: 0;
-        }
         .btnSaveEdit{                            
-            background: url('../img/saveChange.png') no-repeat center;
-            margin: 0;
+            color:#6b97ff;
+            font-size: 27px;
         }
-    }
-
-    .deleteUser{
-        background: url('../img/delete-btn.png') no-repeat center;
-        border:0;
-        height:30px;
-        width:30px;
     }
     
     
@@ -162,12 +196,16 @@ table{
 .editable {
     >td{
         >input{
-            border: 1px solid lightgray !important;
+            border: 2px solid #ededed !important;
             width: 100%;
+            &:focus{
+                outline: none;
+            }
         }
-        .selectArrow{
-            background: url(../img/arrows.png) no-repeat right center !important;
-            border: 1px solid lightgray;
+        > select{
+            background: url(../img/arrows.png) no-repeat;
+            background-position: 92% 50%;
+            border: 2px solid #ededed !important;
             width: 100%;
         }
     }
@@ -238,17 +276,19 @@ $removeTextColor: #6b6b6b;
 .paging{
     text-align: center;
     width: 100%;
+    margin-top:150px;
     .pagination{
         >span{
             border:none;
-            font-size: 20px;
-            padding: 12px;
+            font-size: 32px;
+            padding: 14px 22px;
             color: #666;
             text-align: center; 
-            text-decoration: none;              
+            text-decoration: none;  
+            margin: 10px;            
         }
         .currentPage{  
-            background: #dbf6f5;
+            background: #cef3f2;
             border-radius: 50%;
         }
     }

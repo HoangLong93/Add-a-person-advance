@@ -54,7 +54,7 @@ class AddUserForm extends Component {
                     )}
                 </select>
 
-                <button title="Add User" onClick={this.handleAdd.bind(this)} className={this.state.enabledAddButton ? "btn-success" : "btn-secondary"} disabled={!this.state.enabledAddButton}>+</button>
+                <button title="Add User" onClick={this.handleAdd.bind(this)} className={this.state.enabledAddButton ? "btn-success" : "btn-secondary"} disabled={!this.state.enabledAddButton}><span className="glyphicon glyphicon-plus"></span></button>
                 <br />
                 <div className={this.state.isValidate ? "" : "hidden"}>
                     <div className={`validate validateName ${this.state.user.name === "" ? "" : "hideValidateBlock"}`}>
@@ -67,7 +67,6 @@ class AddUserForm extends Component {
                         <p>Please choose user age</p>
                     </div>
                 </div>
-                <br /><br />
             </div>
         )
     }

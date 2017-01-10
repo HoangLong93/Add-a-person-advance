@@ -44,13 +44,13 @@ class Row extends Component {
                     <input value={user.name} onChange={(ev) => this.handleChange(ev.target.value, 'name')} readOnly={!this.state.editable} />
                 </td>
                 <td className="gender">
-                    <select value={user.gender} onChange={(ev) => this.handleChange(ev.target.value, 'gender')} disabled={!this.state.editable}>
+                    <select value={user.gender} className="selectArrow" onChange={(ev) => this.handleChange(ev.target.value, 'gender')} disabled={!this.state.editable}>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
                 </td>
                 <td className="age">
-                    <select value={user.age} onChange={(ev) => this.handleChange(ev.target.value, 'age')} disabled={!this.state.editable}>
+                    <select value={user.age} className="selectArrow" onChange={(ev) => this.handleChange(ev.target.value, 'age')} disabled={!this.state.editable}>
                         {options.map((option, index) =>
                             <Option key={index}
                                 option={option}
@@ -61,17 +61,18 @@ class Row extends Component {
                 <td className="edit">
                     {!this.state.editable ?
                         <div className="editUser">
-                            <button title="Edit User" className="btnEdit" onClick={this.onEditUser.bind(this)}></button><span></span>
+                            <button title="Edit User" onClick={this.onEditUser.bind(this)}><span className="glyphicon glyphicon-pencil"></span></button><span></span>
                         </div> :
                         <div className="editUser">
-                            <button title="Cancle Changes" className="btnCancelEdit" onClick={this.onCancelEdit.bind(this)}></button>
-                            <button title="Save Changes" className="btnSaveEdit" onClick={this.onSaveEdit.bind(this)}></button>
+                            <button title="Save Changes" className="glyphicon glyphicon-pencil btnSaveEdit" onClick={this.onSaveEdit.bind(this)}></button>
                             <span></span>
                         </div>
                     }
                 </td>
                 <td className="delete">
-                    <button title="Delete User" className="deleteUser" onClick={onRemove.bind(this, user.id)}></button>
+                    <div className="deleteUser">
+                        <button title="Delete User" onClick={onRemove.bind(this, user.id)}><span className="glyphicon glyphicon-remove"></span></button>
+                    </div>
                 </td>
             </tr>
         )
