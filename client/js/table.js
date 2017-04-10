@@ -2,7 +2,6 @@
 import React, { Component, PropTypes } from 'react';
 
 // Import Component
-import UserList from './userList.js';
 import Row from './row.js';
 import Confirm from './confirm.js';
 import Pager from './pager.js';
@@ -11,11 +10,19 @@ class Table extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: props.users,
-            sortInOrder: false,
-            currentPage: 1
+            users: [],
+            sortInOrder: false
         }
     }
+    // componentWillMount() {
+    //     console.log('component will mount cai nay goi 1 lan')
+    // }
+    // componentDidMount() {
+    //     console.log('component did mount cai nay goi 1 lan')
+    // }
+    // componentWillUpdate() {
+    //     console.log('update -> render goi nhieu lan')
+    // }
     //Sort Users
     handleSortFunction(fieldName) {
         const newUsers = [...this.state.users];
@@ -56,16 +63,16 @@ class Table extends Component {
     }
     componentWillReceiveProps(nextProps) {
         this.setState({
+            users: nextProps.users,
             currentPage: 1
         })
     }
     render() {
-        console.log(this.state.users)
         const order = this.state.sortInOrder ? 'ascending' : 'descending';
         let page = this.getPage();
-        let users = page.users.map((user) =>
+        let users = page.users.map((user, i) =>
             <Row
-                key={user.id}
+                key={'user' + i}
                 user={user}
                 onSave={this.props.onSave}
                 onRemove={this.props.onRemove}

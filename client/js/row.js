@@ -15,17 +15,16 @@ class Row extends Component {
         this.currentUser = Object.assign({}, this.state.user);
         this.setState({ editable: true });
     }
-    onCancelEdit() {
-        this.setState({ editable: false, user: this.currentUser });
-    }
+    // onCancelEdit() {
+    //     this.setState({ editable: false, user: this.currentUser });
+    // }
     onSaveEdit() {
         const {user} = this.state;
-        this.props.onSave(user.id, user)
+        this.props.onSave(user._id, user)
         this.setState({ editable: false });
     }
     handleChange(value, fieldName) {
         const newUser = Object.assign({}, this.state.user, { [fieldName]: value });
-        console.log(newUser)
         this.setState({ user: newUser })
     }
     componentWillReceiveProps(nextProps) {
@@ -41,7 +40,7 @@ class Row extends Component {
         return (
             <tr id={user.id} className={this.state.editable ? 'editable' : ''}>
                 <td className="name">
-                    <input value={user.name} onChange={(ev) => this.handleChange(ev.target.value, 'name')} readOnly={!this.state.editable} />
+                    <input value={user.name || ''} onChange={(ev) => this.handleChange(ev.target.value, 'name')} readOnly={!this.state.editable} />
                 </td>
                 <td className="gender">
                     <select value={user.gender} className="selectArrow" onChange={(ev) => this.handleChange(ev.target.value, 'gender')} disabled={!this.state.editable}>
@@ -71,7 +70,7 @@ class Row extends Component {
                 </td>
                 <td className="delete">
                     <div className="deleteUser">
-                        <button title="Delete User" onClick={onRemove.bind(this, user.id)}><span className="glyphicon glyphicon-remove"></span></button>
+                        <button title="Delete User" onClick={onRemove.bind(this, user._id)}><span className="glyphicon glyphicon-remove"></span></button>
                     </div>
                 </td>
             </tr>
